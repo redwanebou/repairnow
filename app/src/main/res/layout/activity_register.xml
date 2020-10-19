@@ -9,19 +9,31 @@
 
     <ImageView
         android:id="@+id/logo"
+        android:layout_gravity="center"
         android:layout_width="325dp"
         android:layout_height="180dp"
-        android:layout_gravity="center"
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/inloggen"
+        android:id="@+id/registreren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/wit"
         android:fontFamily="sans-serif-condensed"
-        android:text="@string/inloggen"
+        android:text="@string/registreren"
         android:textSize="42sp" />
+
+    <EditText
+        android:id="@+id/naam"
+        android:hint="@string/naam"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/wit"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/naam"
+        android:drawableStart="@drawable/naam" />
 
     <EditText
         android:id="@+id/email"
@@ -34,6 +46,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/email"
         android:drawableStart="@drawable/email" />
+
     <EditText
         android:id="@+id/wachtwoord"
         android:hint="@string/wachtwoord"
@@ -46,21 +59,21 @@
         android:drawableLeft="@drawable/lock"
         android:drawableStart="@drawable/lock"/>
     <Button
-        android:id="@+id/inlog"
+        android:id="@+id/register"
         android:layout_marginTop="15dp"
         android:background="@drawable/rondeknop"
-        android:text="@string/loginknop"
+        android:text="@string/registerknop"
         android:textColor="@color/wit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/naarregister"
-        android:background="@color/transparent"
-        android:text="@string/naarregister"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/wit"
-        android:textAllCaps="false"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:id="@+id/naarloginpagina"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/transparent"
+        android:text="@string/algeregistreerd"
+        android:textAllCaps="false"
+        android:textColor="@color/wit" />
 </LinearLayout>

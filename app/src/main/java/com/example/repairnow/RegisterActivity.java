@@ -1,7 +1,5 @@
 package com.example.repairnow;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,35 +10,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-// variables //
-EditText email;
-EditText wachtwoord;
-Button naarregister;
-Button inlog;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class RegisterActivity extends AppCompatActivity {
+    // variables //
+    EditText naam;
+    EditText email;
+    EditText wachtwoord;
+    Button register;
+    Button naarloginpagina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // wat wil je laten zien? //
+        setContentView(R.layout.activity_register);
+        // koppelen aan .xml //
+        naam = findViewById(R.id.naam);
         email = findViewById(R.id.email);
         wachtwoord = findViewById(R.id.wachtwoord);
-        inlog = findViewById(R.id.inlog);
-        StuurDoor();
-    }
-    // naar register pagina //
-    public void StuurDoor() {
+        register = findViewById(R.id.register);
+
+        // ga terug naar loginpagina //
         final Context context = this;
-        naarregister = findViewById(R.id.naarregister);
-        naarregister.setOnClickListener(new View.OnClickListener() {
+        naarloginpagina = findViewById(R.id.naarloginpagina);
+        naarloginpagina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(context, RegisterActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
             }
         });
-        // show error na er op login is geklikt //
-        inlog.setOnClickListener(new View.OnClickListener() {
+
+        // show error na er op register is geklikt //
+        register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 ErrorLog();
@@ -57,11 +60,15 @@ Button inlog;
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
+
     void ErrorLog(){
-        if (LegeVeld(email) && LegeVeld(wachtwoord)){
+        if (LegeVeld(naam) && LegeVeld(email) && LegeVeld(wachtwoord)){
             // Toast is witte balkje //
             Toast t = Toast.makeText(this, "Je hebt niks ingevuld", Toast.LENGTH_SHORT);
             t.show();
+        }
+        if (LegeVeld(naam)){
+            naam.setError("Naam is niet ingevuld");
         }
         if (!(CheckEmail(email))){
             email.setError("E-mailadres is niet geldig");
@@ -70,4 +77,4 @@ Button inlog;
             wachtwoord.setError("Wachtwoord is niet ingevuld");
         }
     }
- }
+}

@@ -1,3 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Repair Now</string>
+    <string name="appnaam">Repair Now</string>
+    <string name="email">E-mailadres</string>
+    <string name="inloggen">Inloggen</string>
+    <string name="registreren">Registreren</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="loginknop">LOGIN</string>
+    <string name="registerknop">REGISTREER</string>
+    <string name="naarregister">Geen account? Registreer hier</string>
+    <string name="algeregistreerd">Heb je al een account? Ga terug</string>
+    <string name="naam">Naam</string>
 </resources>
