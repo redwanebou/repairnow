@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 EditText email,wachtwoord;
 Button naarregister,inlog;
 
-
     // Firebase database check auth state //
     private FirebaseAuth mAuth;
 
@@ -36,29 +35,28 @@ Button naarregister,inlog;
         email = findViewById(R.id.email);
         wachtwoord = findViewById(R.id.wachtwoord);
         inlog = findViewById(R.id.inlog);
-        StuurDoor();
-    }
 
 
-    // naar register pagina //
-    public void StuurDoor() {
-        final Context context = this;
-        naarregister = findViewById(R.id.naarregister);
-        naarregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent intent = new Intent(context, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-        // show error na er op login is geklikt //
-        inlog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Inloggen();
-            }
-        });
+        // naar register pagina //
+            final Context context = this;
+            naarregister = findViewById(R.id.naarregister);
+            naarregister.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent intent = new Intent(context, RegisterActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            // show error na er op login is geklikt //
+            inlog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Inloggen();
+                }
+            });
     }
+
     // check op lege velden //
     boolean LegeVeld(EditText text){
         CharSequence leeg = text.getText().toString();
@@ -81,7 +79,7 @@ Button naarregister,inlog;
             wachtwoord.setError("Wachtwoord is niet ingevuld");
         }
 
-        if (!(LegeVeld(email) && LegeVeld(wachtwoord))) {
+        if (CheckEmail(email) &&  (!LegeVeld(wachtwoord))) {
             mAuth.signInWithEmailAndPassword(iemail, iwachtwoord)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override

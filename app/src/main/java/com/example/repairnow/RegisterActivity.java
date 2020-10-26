@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                 wachtwoord.setError("Wachtwoord is niet ingevuld");
             }
 
-            if (!(LegeVeld(email) && LegeVeld(wachtwoord))) {
+               if (CheckEmail(email) &&  (!LegeVeld(wachtwoord))) {
                 mAuth.createUserWithEmailAndPassword(iemail, iwachtwoord)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
