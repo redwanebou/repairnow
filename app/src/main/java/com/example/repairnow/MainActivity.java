@@ -1,5 +1,6 @@
 package com.example.repairnow;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,22 +13,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 // variables //
-EditText email;
-EditText wachtwoord;
-Button naarregister;
-Button inlog;
+EditText email,wachtwoord;
+Button naarregister,inlog;
+
+
+    // Firebase database check auth state //
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Get Firebase auth instance
+        mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email);
         wachtwoord = findViewById(R.id.wachtwoord);
         inlog = findViewById(R.id.inlog);
         StuurDoor();
     }
+
+
     // naar register pagina //
     public void StuurDoor() {
         final Context context = this;
@@ -43,7 +55,7 @@ Button inlog;
         inlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ErrorLog();
+                Inloggen();
             }
         });
     }
@@ -57,17 +69,33 @@ Button inlog;
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
-    void ErrorLog(){
-        if (LegeVeld(email) && LegeVeld(wachtwoord)){
-            // Toast is witte balkje //
-            Toast t = Toast.makeText(this, "Je hebt niks ingevuld", Toast.LENGTH_SHORT);
-            t.show();
-        }
-        if (!(CheckEmail(email))){
+    private void Inloggen() {
+        String iemail, iwachtwoord;
+        iemail = email.getText().toString();
+        iwachtwoord = wachtwoord.getText().toString();
+
+        if (!(CheckEmail(email))) {
             email.setError("E-mailadres is niet geldig");
         }
-        if (LegeVeld(wachtwoord)){
+        if (LegeVeld(wachtwoord)) {
             wachtwoord.setError("Wachtwoord is niet ingevuld");
         }
+
+        if (!(LegeVeld(email) && LegeVeld(wachtwoord))) {
+            mAuth.signInWithEmailAndPassword(iemail, iwachtwoord)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Succesvol ingelogd!", Toast.LENGTH_LONG).show();
+
+                                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "E-mailadres/wachtwoord is onjuist!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        }
     }
- }
+}

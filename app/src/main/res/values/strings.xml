@@ -6,6 +6,7 @@
     <string name="registreren">Registreren</string>
     <string name="wachtwoord">Wachtwoord</string>
     <string name="loginknop">LOGIN</string>
+    <string name="welkom">Welkom je bent ingelogd!</string>
     <string name="registerknop">REGISTREER</string>
     <string name="naarregister">Geen account? Registreer hier</string>
     <string name="algeregistreerd">Heb je al een account? Ga terug</string>

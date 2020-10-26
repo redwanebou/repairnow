@@ -16,11 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- register pagina -->
-        <activity
-            android:label="@string/appnaam"
-            android:name=".RegisterActivity" >
-        </activity>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".HomeActivity"/>
     </application>
-
 </manifest>
