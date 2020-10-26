@@ -3,7 +3,6 @@ package com.example.repairnow;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,16 +34,14 @@ Button naarregister,inlog;
         email = findViewById(R.id.email);
         wachtwoord = findViewById(R.id.wachtwoord);
         inlog = findViewById(R.id.inlog);
+        naarregister = findViewById(R.id.naarregister);
 
 
         // naar register pagina //
-            final Context context = this;
-            naarregister = findViewById(R.id.naarregister);
             naarregister.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Intent intent = new Intent(context, RegisterActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 }
             });
 
@@ -86,11 +83,10 @@ Button naarregister,inlog;
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Succesvol ingelogd!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
 
-                                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                                startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "E-mailadres/wachtwoord is onjuist!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "E-mailadres of wachtwoord is onjuist", Toast.LENGTH_LONG).show();
                             }
                         }
                     });

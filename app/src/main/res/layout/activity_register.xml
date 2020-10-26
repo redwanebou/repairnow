@@ -58,6 +58,32 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/lock"
         android:drawableStart="@drawable/lock"/>
+
+    <RadioGroup
+        android:id="@+id/keuze"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/klant"
+        android:textColor="@color/wit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/klant"
+        android:checked="true" />
+
+    <RadioButton
+        android:id="@+id/mechanieker"
+        android:textColor="@color/wit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mechanieker"
+        android:checked="false" />
+
+    </RadioGroup>
+
+
     <Button
         android:id="@+id/register"
         android:layout_marginTop="15dp"
