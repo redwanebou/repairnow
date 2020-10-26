@@ -48,22 +48,12 @@ Button naarregister,inlog;
             // show error na er op login is geklikt //
             inlog.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View arg0) {
                     Inloggen();
                 }
             });
     }
 
-    // check op lege velden //
-    boolean LegeVeld(EditText text){
-        CharSequence leeg = text.getText().toString();
-        return TextUtils.isEmpty(leeg);
-    }
-    // check of email wel geldig is //
-    boolean CheckEmail(EditText text){
-        CharSequence email = text.getText().toString();
-        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
-    }
     private void Inloggen() {
         String iemail, iwachtwoord;
         iemail = email.getText().toString();
@@ -91,5 +81,16 @@ Button naarregister,inlog;
                         }
                     });
         }
+    }
+
+    // check op lege velden //
+    boolean LegeVeld(EditText text){
+        CharSequence leeg = text.getText().toString();
+        return TextUtils.isEmpty(leeg);
+    }
+    // check of email wel geldig is //
+    boolean CheckEmail(EditText text){
+        CharSequence email = text.getText().toString();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 }

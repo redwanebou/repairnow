@@ -3,9 +3,6 @@ package com.example.repairnow;
 public class Opslag {
     String naam,email,wachtwoord,keuze;
 
-    public Opslag(){
-
-    }
 
     public Opslag(String naam, String email, String wachtwoord, String keuze) {
         this.naam = naam;

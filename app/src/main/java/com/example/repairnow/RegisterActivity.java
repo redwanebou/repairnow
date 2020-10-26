@@ -62,23 +62,11 @@ public class RegisterActivity extends AppCompatActivity {
         // reg button //
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View arg0) {
                 Registreer();
             }
         });
 
-    }
-
-    // check op lege velden //
-    boolean LegeVeld(EditText text) {
-        CharSequence leeg = text.getText().toString();
-        return TextUtils.isEmpty(leeg);
-    }
-
-    // check of email wel geldig is //
-    boolean CheckEmail(EditText text) {
-        CharSequence email = text.getText().toString();
-        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
     private void Registreer() {
@@ -136,4 +124,16 @@ public class RegisterActivity extends AppCompatActivity {
         };
         userref.addListenerForSingleValueEvent(eventListener);
         }
+
+    // check op lege velden //
+    boolean LegeVeld(EditText text) {
+        CharSequence leeg = text.getText().toString();
+        return TextUtils.isEmpty(leeg);
     }
+
+    // check of email wel geldig is //
+    boolean CheckEmail(EditText text) {
+        CharSequence email = text.getText().toString();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+}
