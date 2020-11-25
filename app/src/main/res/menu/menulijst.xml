@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/homepage"
+        android:icon="@drawable/homepage"
+        android:title="@string/homepage"/>
+
+    <item
+        android:id="@+id/profiel"
+        android:icon="@drawable/profiel"
+        android:title="@string/profiel"/>
+
+    <item
+        android:id="@+id/auto"
+        android:icon="@drawable/auto"
+        android:title="@string/auto"/>
+
+    <item
+        android:id="@+id/uitloggen"
+        android:icon="@drawable/uitloggen"
+        android:title="@string/uitloggen"/>
+
+</menu>

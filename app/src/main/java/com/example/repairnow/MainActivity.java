@@ -16,28 +16,36 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 // variables //
 EditText email,wachtwoord;
 Button naarregister,inlog;
+// Firebase database check auth state //
+private FirebaseAuth mAuth;
+// check login state //
+FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    // Firebase database check auth state //
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //Get Firebase auth instance
-        mAuth = FirebaseAuth.getInstance();
-        email = findViewById(R.id.email);
-        wachtwoord = findViewById(R.id.wachtwoord);
-        inlog = findViewById(R.id.inlog);
-        naarregister = findViewById(R.id.naarregister);
+            //Get Firebase auth instance //
+            mAuth = FirebaseAuth.getInstance();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            email = findViewById(R.id.email);
+            wachtwoord = findViewById(R.id.wachtwoord);
+            inlog = findViewById(R.id.inlog);
+            naarregister = findViewById(R.id.naarregister);
 
+        // before you do anything let's check if the user is logged in //
+        if (user != null){
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+        }
 
-        // naar register pagina //
+            // naar register pagina //
             naarregister.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
@@ -52,7 +60,8 @@ Button naarregister,inlog;
                     Inloggen();
                 }
             });
-    }
+        }
+
 
     private void Inloggen() {
         String iemail, iwachtwoord;

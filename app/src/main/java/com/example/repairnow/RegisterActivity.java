@@ -79,14 +79,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
 // check if username exist //
-        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference userref = dbref.child("users").child(inaam);
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    naam.setError("Gebruikersnaam is niet beschikbaar");
-                }
+                DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference userref = dbref.child("users").child(inaam);
+                ValueEventListener eventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()) {
+                            naam.setError("Gebruikersnaam is niet beschikbaar");
+                        }
 
                 else if (!dataSnapshot.exists() && CheckEmail(email) &&  (!LegeVeld(wachtwoord)) ){
                     // keuze //
@@ -96,8 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if (mechanieker.isChecked()){
                         ikeuze = "Mechanieker";
                     }
-                    iemail = email.getText().toString();
-                    iwachtwoord = wachtwoord.getText().toString();
+                            iemail = email.getText().toString();
+                            iwachtwoord = wachtwoord.getText().toString();
 
                         mAuth.createUserWithEmailAndPassword(iemail, iwachtwoord)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -108,7 +108,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             db = FirebaseDatabase.getInstance();
                                             ref = db.getReference("users");
                                             Opslag opslagruimte = new Opslag(inaam,iemail,iwachtwoord,ikeuze);
-                                            ref.child(inaam).setValue(opslagruimte);
+                                            String GETMYID = mAuth.getUid();
+                                            ref.child(GETMYID).setValue(opslagruimte);
 
                                             Toast.makeText(getApplicationContext(), "Succesvol geregistreerd!", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, HomeActivity.class));

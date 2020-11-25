@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "841836986151",
+    "firebase_url": "https://nowrepair.firebaseio.com",
+    "project_id": "nowrepair",
+    "storage_bucket": "nowrepair.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841836986151:android:8ba28b044f555046c0b302",
+        "android_client_info": {
+          "package_name": "com.example.repairnow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841836986151-v0bc53rjvgieol6ibsg4ak1f15r8loka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.repairnow",
+            "certificate_hash": "a5be016e5b67623c27504ab9ced5e24d8a580024"
+          }
+        },
+        {
+          "client_id": "841836986151-9psre6sitg2rro0lqvp4l0bh2c3t6rd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv9wLmdp8xZl86KLF5g8m1O7maE9mYvDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841836986151-9psre6sitg2rro0lqvp4l0bh2c3t6rd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

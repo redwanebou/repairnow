@@ -1,3 +1,5 @@
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
-</resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- nav -->
+        <item name="colorPrimary">@color/blauw</item>
+    </style></resources>

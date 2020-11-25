@@ -4,4 +4,10 @@
     <color name="zwart">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="backgroundknop">#3333FF</color>
+
+    <!-- nav colors !-->
+    <color name="blauw">#0080FF</color>
+    <color name="donkergrijs">#606060</color>
+    <color name="headnavcolor">#e68a00</color>
+
 </resources>
