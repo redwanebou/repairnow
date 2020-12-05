@@ -45,7 +45,8 @@
             app:navGraph="@navigation/controller"
             android:id="@+id/navfrag"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="49dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"/>

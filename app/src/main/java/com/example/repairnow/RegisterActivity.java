@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                 wachtwoord.setError("Wachtwoord is niet ingevuld");
             }
 
-// check if username exist //
+              // check if username exist //
                 DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference userref = dbref.child("users").child(inaam);
                 ValueEventListener eventListener = new ValueEventListener() {

@@ -89,8 +89,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // set naam //
-                String usernaam = dataSnapshot.child("naam").getValue().toString();
-                name.setText("Welkom " + usernaam);
+                name.setText("Welkom " + dataSnapshot.child("naam").getValue().toString());
 
             // check keuze //
                 String keuze = dataSnapshot.child("keuze").getValue().toString();

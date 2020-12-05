@@ -20,7 +20,7 @@
     <string name="auto">Auto aanmaken</string>
     <string name="profiel">Mijn profiel</string>
     <string name="homepage">Homepagina</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pasaaninfo">Mijn gegevens aanpassen</string>
+    <string name="aanpassen">Pas mijn gegevens aan</string>
 
 </resources>
