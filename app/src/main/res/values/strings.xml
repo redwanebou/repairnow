@@ -14,13 +14,18 @@
     <string name="naam">Naam</string>
     <string name="klant">Klant</string>
     <string name="mechanieker">Mechanieker</string>
+    <string name="telefoon">Telefoonnummer</string>
+
 
 
     <!-- nav menu !-->
-    <string name="auto">Auto aanmaken</string>
+    <string name="probleem">Probleem aanmaken</string>
     <string name="profiel">Mijn profiel</string>
     <string name="homepage">Homepagina</string>
-    <string name="pasaaninfo">Mijn gegevens aanpassen</string>
-    <string name="aanpassen">Pas mijn gegevens aan</string>
+    <string name="pasaaninfo">Gegevens aanpassen</string>
+    <string name="pasaanww">Wachtwoord aanpassen</string>
+    <string name="aanpassen">Aanpassen</string>
+    <string name="oldww">Oude wachtwoord</string>
+    <string name="newww">Nieuwe wachtwoord</string>
 
 </resources>

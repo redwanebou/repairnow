@@ -13,9 +13,9 @@
         android:title="@string/profiel"/>
 
     <item
-        android:id="@+id/auto"
-        android:icon="@drawable/auto"
-        android:title="@string/auto"/>
+        android:id="@+id/probleem"
+        android:icon="@drawable/probleem"
+        android:title="@string/probleem"/>
 
     <item
         android:id="@+id/uitloggen"

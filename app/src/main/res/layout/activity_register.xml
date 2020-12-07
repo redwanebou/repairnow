@@ -59,6 +59,18 @@
         android:drawableLeft="@drawable/lock"
         android:drawableStart="@drawable/lock"/>
 
+    <EditText
+        android:id="@+id/telefoon"
+        android:hint="@string/telefoon"
+        android:inputType="number"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/wit"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/telefoon"
+        android:drawableStart="@drawable/telefoon" />
+
     <RadioGroup
         android:id="@+id/keuze"
         android:layout_width="match_parent"

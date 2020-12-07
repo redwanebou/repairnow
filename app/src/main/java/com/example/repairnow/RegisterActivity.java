@@ -25,10 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
     // variables //
-    EditText naam, email, wachtwoord;
+    EditText naam, email, wachtwoord,telefoon;
     Button register, naarloginpagina;
     RadioButton klant,mechanieker;
-    String inaam,iemail, iwachtwoord,ikeuze;
+    String inaam,iemail, iwachtwoord,ikeuze,itelefoon;
 
     // Firebase database check auth state //
     private FirebaseAuth mAuth;
@@ -46,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         naam = findViewById(R.id.naam);
         email = findViewById(R.id.email);
         wachtwoord = findViewById(R.id.wachtwoord);
+        telefoon = findViewById(R.id.telefoon);
         register = findViewById(R.id.register);
         klant = findViewById(R.id.klant);
         mechanieker = findViewById(R.id.mechanieker);
@@ -70,25 +71,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void Registreer() {
+        itelefoon = telefoon.getText().toString();
         inaam = naam.getText().toString();
+        iemail = email.getText().toString();
+        iwachtwoord = wachtwoord.getText().toString();
+
         if (!(CheckEmail(email))) {
                 email.setError("E-mailadres is niet geldig");
             }
             if (LegeVeld(wachtwoord)) {
                 wachtwoord.setError("Wachtwoord is niet ingevuld");
             }
-
-              // check if username exist //
-                DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference userref = dbref.child("users").child(inaam);
-                ValueEventListener eventListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()) {
-                            naam.setError("Gebruikersnaam is niet beschikbaar");
-                        }
-
-                else if (!dataSnapshot.exists() && CheckEmail(email) &&  (!LegeVeld(wachtwoord)) ){
+            if (LegeVeld(naam)){
+                naam.setError("Naam is niet ingevuld");
+            }
+            if (!CheckTelefoon(telefoon)){
+                telefoon.setError("Telefoonnummer is niet geldig");
+            }
+                    if (CheckEmail(email) && !LegeVeld(wachtwoord) && !LegeVeld(naam) && CheckTelefoon(telefoon)){
                     // keuze //
                     if (klant.isChecked()){
                         ikeuze = "Klant";
@@ -96,8 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
                     if (mechanieker.isChecked()){
                         ikeuze = "Mechanieker";
                     }
-                            iemail = email.getText().toString();
-                            iwachtwoord = wachtwoord.getText().toString();
 
                         mAuth.createUserWithEmailAndPassword(iemail, iwachtwoord)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -107,23 +105,17 @@ public class RegisterActivity extends AppCompatActivity {
                                             // opslaan in realtime database //
                                             db = FirebaseDatabase.getInstance();
                                             ref = db.getReference("users");
-                                            Opslag opslagruimte = new Opslag(inaam,iemail,iwachtwoord,ikeuze);
+                                            Opslag opslagruimte = new Opslag(inaam,iemail,iwachtwoord,itelefoon,ikeuze);
                                             String GETMYID = mAuth.getUid();
                                             ref.child(GETMYID).setValue(opslagruimte);
-
                                             Toast.makeText(getApplicationContext(), "Succesvol geregistreerd!", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                                         } else {
-                                            email.setError("E-mailadres is al in gebruik");
+                                            Toast.makeText(getApplicationContext(), "E-mailadres is niet geldig/wachtwoord is te zwak", Toast.LENGTH_LONG).show();
                                         }
                                     }
                                 });
                 }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
-        };
-        userref.addListenerForSingleValueEvent(eventListener);
         }
 
     // check op lege velden //
@@ -136,5 +128,14 @@ public class RegisterActivity extends AppCompatActivity {
     boolean CheckEmail(EditText text) {
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+
+    boolean CheckTelefoon(EditText text){
+        if (text.length() != 10){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

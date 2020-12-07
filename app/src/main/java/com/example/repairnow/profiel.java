@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DataSnapshot;
@@ -36,12 +37,12 @@ public class profiel extends Fragment {
 
     // check login state //
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    EditText naam, email;
+    EditText naam, telefoon,oldww,newww;
     Button aanpassen;
     RadioButton klant,mechanieker;
-    String inaam,iemail,ikeuze,iwachtwoord;
+    String inaam,ikeuze,itelefoon,ioldww,inewww;
     String GETMYID;
-    private FirebaseAuth mAuth;
+
 
     public profiel() {
         // Required empty public constructor
@@ -61,7 +62,9 @@ public class profiel extends Fragment {
 
         // find the variable //
         naam = view.findViewById(R.id.naam);
-        email = view.findViewById(R.id.email);
+        telefoon = view.findViewById(R.id.telefoon);
+        oldww = view.findViewById(R.id.oldww);
+        newww = view.findViewById(R.id.newww);
         aanpassen = view.findViewById(R.id.aanpassen);
         klant = view.findViewById(R.id.klant);
         mechanieker = view.findViewById(R.id.mechanieker);
@@ -69,7 +72,7 @@ public class profiel extends Fragment {
         UpdateProfile();
     }
 
-    public void UpdateProfile(){
+    public void UpdateProfile() {
 
         GETMYID = user.getUid();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
@@ -77,86 +80,123 @@ public class profiel extends Fragment {
         reference.child(GETMYID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
+
                 // show me the value's from the database //
                 naam.setText(dataSnapshot.child("naam").getValue().toString());
-                email.setText(dataSnapshot.child("email").getValue().toString());
-                if (dataSnapshot.child("keuze").getValue().toString().equals("Klant")){
+                telefoon.setText(dataSnapshot.child("telefoon").getValue().toString());
+
+
+                if (dataSnapshot.child("keuze").getValue().toString().equals("Klant")) {
                     klant.setChecked(true);
-                }
-                else{
+                } else {
                     mechanieker.setChecked(true);
                 }
-
                 aanpassen.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
                         // collect the data //
                         inaam = naam.getText().toString();
-                        iemail = email.getText().toString();
+                        itelefoon = telefoon.getText().toString();
                         ikeuze = dataSnapshot.child("keuze").getValue().toString();
-                        iwachtwoord = dataSnapshot.child("wachtwoord").getValue().toString();
+                        ioldww = oldww.getText().toString();
+                        inewww = newww.getText().toString();
 
-                        if (!inaam.equals((dataSnapshot.child("naam").getValue().toString()))){
+                        if (LegeVeld(naam)){
+                            naam.setError("Je naam mag niet leeg zijn");
+                        }
+                        if (LegeVeld(newww) && !LegeVeld(oldww)){
+                            newww.setError("Je nieuwe wachtwoord mag niet leeg zijn");
+                        }
+
+                        if (!LegeVeld(naam) && !LegeVeld(newww) && CheckTelefoon(telefoon)){
+
+                        if (!inaam.equals(dataSnapshot.child("naam").getValue().toString())) {
                             // change the value //
                             dataSnapshot.getRef().child("naam").setValue(inaam);
-                            Uitloggen();
-                            Toast.makeText(getContext(), "Je naam is aangepast. Log opnieuw in", Toast.LENGTH_SHORT).show();
+                            LinkToHome();
+                            Toast.makeText(getContext(), "Je naam is succesvol aangepast", Toast.LENGTH_SHORT).show();
+                        } else {
+                            naam.setError("Je hebt niks veranderd aan je naam");
                         }
 
-                        if (!iemail.equals((dataSnapshot.child("email").getValue().toString())) && (CheckEmail(email))) {
-                                mAuth.fetchSignInMethodsForEmail(iemail).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                                        if (task.getResult().getSignInMethods().size() == 0) {
-                                            // change the value in realtime database //
-                                            dataSnapshot.getRef().child("email").setValue(iemail);
-                                            // change the value in auth //
-                                            user.updateEmail(iemail);
-                                            Uitloggen();
-                                        } else {
-                                            email.setError("E-mailadres bestaat al");
-                                        }
-                                    }
-                                });
+                        if (!itelefoon.equals(dataSnapshot.child("telefoon").getValue().toString())) {
+                            // change the value //
+                            dataSnapshot.getRef().child("telefoon").setValue(itelefoon);
+                            LinkToHome();
+                            Toast.makeText(getContext(), "Je telefoonnummer is succesvol aangepast", Toast.LENGTH_SHORT).show();
+                        } else {
+                            telefoon.setError("Telefoonnummer is niet toegelaten");
                         }
 
-                        if (!iemail.equals((dataSnapshot.child("email").getValue().toString())) && !(CheckEmail(email))){
-                            email.setError("E-mailadres is niet geldig");
-                        }
 
-                        if (klant.isChecked() && ikeuze.equals("Mechanieker")){
+                        if (klant.isChecked() && ikeuze.equals("Mechanieker")) {
                             dataSnapshot.getRef().child("keuze").setValue("Klant");
-                            Uitloggen();
-                            Toast.makeText(getContext(), "Je keuze is aangepast naar klant. Log opnieuw in", Toast.LENGTH_SHORT).show();
+                            LinkToHome();
+                            Toast.makeText(getContext(), "Je keuze is aangepast naar klant", Toast.LENGTH_SHORT).show();
                         }
 
-                        if (mechanieker.isChecked() && ikeuze.equals("Klant")){
+                        if (mechanieker.isChecked() && ikeuze.equals("Klant")) {
                             dataSnapshot.getRef().child("keuze").setValue("Mechanieker");
-                            Uitloggen();
-                            Toast.makeText(getContext(), "Je keuze is aangepast naar mechanieker. Log opnieuw in", Toast.LENGTH_SHORT).show();
+                            LinkToHome();
+                            Toast.makeText(getContext(), "Je keuze is aangepast naar mechanieker", Toast.LENGTH_SHORT).show();
                         }
+
+                        // ww //
+                        if (ioldww.equals(dataSnapshot.child("wachtwoord").getValue().toString())) {
+                            // change in auth //
+                            user.updatePassword(inewww)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                dataSnapshot.getRef().child("wachtwoord").setValue(inewww);
+                                                LinkToHome();
+                                                Toast.makeText(getContext(), "Je wachtwoord is aangepast", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else{
+                                                newww.setError("Je nieuwe wachtwoord is te zwak");
+                                            }
+                                        }
+                                    });
                         }
+                        else{
+                            oldww.setError("Je oude wachtwoord komt niet overeen met de nieuwe");
+                        }
+                    }
+                    }
                 });
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-    });
+        });
     }
-
-public void Uitloggen(){
-    FirebaseAuth.getInstance().signOut(); //signout firebase
-    Intent i = new Intent(getActivity(),
-            MainActivity.class);
-    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-            Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    startActivity(i);
-}
+    public void LinkToHome(){
+        Intent i = new Intent(getActivity(),
+                HomeActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+    }
 
     // check of email wel geldig is //
     boolean CheckEmail(EditText text) {
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+    // check op lege velden //
+    boolean LegeVeld(EditText text) {
+        CharSequence leeg = text.getText().toString();
+        return TextUtils.isEmpty(leeg);
+    }
+    boolean CheckTelefoon(EditText text){
+        if (text.length() != 10){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

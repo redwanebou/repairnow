@@ -1,13 +1,14 @@
 package com.example.repairnow;
 
 public class Opslag {
-    String naam,email,wachtwoord,keuze;
+    String naam,email,wachtwoord, keuze,telefoon;
 
 
-    public Opslag(String naam, String email, String wachtwoord, String keuze) {
+    public Opslag(String naam, String email, String wachtwoord, String telefoon, String keuze) {
         this.naam = naam;
         this.email = email;
         this.wachtwoord = wachtwoord;
+        this.telefoon = telefoon;
         this.keuze = keuze;
     }
 
@@ -32,6 +33,13 @@ public class Opslag {
 
     public void setWachtwoord(String wachtwoord) {
         this.wachtwoord = wachtwoord;
+    }
+
+    public String getTelefoon() {
+        return telefoon;
+    }
+    public void setTelefoon(String telefoon) {
+        this.telefoon = telefoon;
     }
 
     public String getKeuze() {

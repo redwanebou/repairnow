@@ -31,7 +31,7 @@ import android.view.View.OnTouchListener;
 public class HomeActivity extends AppCompatActivity {
     /* variables */
     TextView email, name;
-    MenuItem auto;
+    MenuItem probleem;
     private FirebaseAuth mAuth;
     // check login state //
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // find menu item's //
         Menu menu = nav.getMenu();
-        auto = menu.findItem(R.id.auto);
+        probleem = menu.findItem(R.id.probleem);
 
 
         // call up the navcontroller //
@@ -94,10 +94,10 @@ public class HomeActivity extends AppCompatActivity {
             // check keuze //
                 String keuze = dataSnapshot.child("keuze").getValue().toString();
                 if (keuze.equals("Klant")){
-                    auto.setVisible(true);
+                    probleem.setVisible(true);
                 }
                 else{
-                    auto.setVisible(false);
+                    probleem.setVisible(false);
                 }
             }
 

@@ -28,9 +28,9 @@
       android:layout_height="wrap_content" />
 
   <EditText
-      android:id="@+id/email"
-      android:hint="@string/email"
-      android:inputType="textEmailAddress"
+      android:id="@+id/telefoon"
+      android:hint="@string/telefoon"
+      android:inputType="number"
       android:layout_marginBottom="10dp"
       android:textColorHint="@color/zwart"
       android:textColor="@color/zwart"
@@ -60,6 +60,36 @@
         android:checked="false" />
 
   </RadioGroup>
+
+  <!-- wachtwoord aanpassen !-->
+  <TextView
+      android:id="@+id/infowachtwoord"
+      style="?android:listSeparatorTextViewStyle"
+      android:text="@string/pasaanww"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/zwart"
+      android:textColorHint="@color/zwart" />
+
+  <EditText
+      android:id="@+id/oldww"
+      android:hint="@string/oldww"
+      android:inputType="textPassword"
+      android:layout_marginBottom="10sp"
+      android:textColorHint="@color/zwart"
+      android:textColor="@color/zwart"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" />
+
+  <EditText
+      android:id="@+id/newww"
+      android:hint="@string/newww"
+      android:inputType="textPassword"
+      android:layout_marginBottom="10dp"
+      android:textColorHint="@color/zwart"
+      android:textColor="@color/zwart"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" />
 
   <Button
       android:id="@+id/aanpassen"
