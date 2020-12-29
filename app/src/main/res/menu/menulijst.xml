@@ -18,6 +18,11 @@
         android:title="@string/probleem"/>
 
     <item
+        android:id="@+id/probleemremove"
+        android:icon="@drawable/probleemremove"
+        android:title="@string/probleemremove"/>
+
+    <item
         android:id="@+id/uitloggen"
         android:icon="@drawable/uitloggen"
         android:title="@string/uitloggen"/>

@@ -21,6 +21,19 @@
     />
 
     <fragment
+        android:id="@+id/probleem"
+        android:name="com.example.repairnow.probleem"
+        android:label="@string/probleem"
+        android:layout="@layout/fragment_probleem"
+        />
+
+    <fragment
+        android:id="@+id/probleemremove"
+        android:name="com.example.repairnow.probleemremove"
+        android:label="@string/probleemremove"
+        />
+
+    <fragment
         android:id="@+id/uitloggen"
         android:name="com.example.repairnow.uitloggen"
         android:label="Uitloggen"

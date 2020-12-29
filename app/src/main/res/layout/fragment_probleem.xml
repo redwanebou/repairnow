@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="20dp"
+    tools:context=".probleem">
+
+    <TextView
+        android:id="@+id/probleem"
+        style="?android:listSeparatorTextViewStyle"
+        android:text="@string/probleem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/wit"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/wit"/>
+
+    <EditText
+        android:id="@+id/merk"
+        android:hint="@string/merk"
+        android:inputType="text"
+        android:layout_marginBottom="10sp"
+        android:textColorHint="@color/wit"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/model"
+        android:hint="@string/model"
+        android:inputType="text"
+        android:layout_marginBottom="10sp"
+        android:textColorHint="@color/wit"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/motor"
+        android:hint="@string/motor"
+        android:inputType="number"
+        android:layout_marginBottom="10sp"
+        android:textColorHint="@color/wit"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/brandstof"
+        android:layout_marginBottom="10sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/brandstof"
+        android:textColor="@color/wit"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/omschrijving_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/wit">
+
+        <EditText
+            android:id="@+id/omschrijving"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/wit"
+            android:gravity="top"
+            android:hint="@string/omschrijving"
+            android:inputType="textMultiLine"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/maakaan"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rondeknop"
+        android:text="@string/maakaan"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+</ScrollView>

@@ -106,8 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             db = FirebaseDatabase.getInstance();
                                             ref = db.getReference("users");
                                             Opslag opslagruimte = new Opslag(inaam,iemail,iwachtwoord,itelefoon,ikeuze);
-                                            String GETMYID = mAuth.getUid();
-                                            ref.child(GETMYID).setValue(opslagruimte);
+                                            ref.child(mAuth.getUid()).setValue(opslagruimte);
                                             Toast.makeText(getApplicationContext(), "Succesvol geregistreerd!", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                                         } else {

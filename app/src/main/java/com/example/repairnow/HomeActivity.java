@@ -7,6 +7,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,13 +27,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import android.view.View.OnTouchListener;
 
+import org.jetbrains.annotations.NotNull;
 
 
 public class HomeActivity extends AppCompatActivity {
     /* variables */
     TextView email, name;
-    MenuItem probleem;
+    MenuItem probleem, probleemremove;
     private FirebaseAuth mAuth;
+    boolean checkpoint;
     // check login state //
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -57,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         // find menu item's //
         Menu menu = nav.getMenu();
         probleem = menu.findItem(R.id.probleem);
+        probleemremove = menu.findItem(R.id.probleemremove);
 
 
         // call up the navcontroller //
@@ -80,9 +84,9 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
-    public void Database(){
-        String GETMYID = user.getUid();
+    public void Database() {
+        final String GETMYID = user.getUid();
+        CheckTheProb(GETMYID);
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 
         reference.child(GETMYID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -91,13 +95,16 @@ public class HomeActivity extends AppCompatActivity {
                 // set naam //
                 name.setText("Welkom " + dataSnapshot.child("naam").getValue().toString());
 
-            // check keuze //
+                // check keuze && of het al aangemaakt is //
                 String keuze = dataSnapshot.child("keuze").getValue().toString();
-                if (keuze.equals("Klant")){
+                if (keuze.equals("Klant") && !checkpoint) {
                     probleem.setVisible(true);
+                    probleemremove.setVisible(false);
                 }
-                else{
+
+                if (checkpoint){
                     probleem.setVisible(false);
+                    probleemremove.setVisible(true);
                 }
             }
 
@@ -105,5 +112,24 @@ public class HomeActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+
+    public void CheckTheProb(String GETMYID) {
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference userNameRef = rootRef.child("autos").child(GETMYID);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    checkpoint = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        userNameRef.addListenerForSingleValueEvent(eventListener);
     }
 }

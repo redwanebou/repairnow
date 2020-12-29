@@ -108,7 +108,7 @@ public class profiel extends Fragment {
                             newww.setError("Je nieuwe wachtwoord mag niet leeg zijn");
                         }
 
-                        if (!LegeVeld(naam) && !LegeVeld(newww) && CheckTelefoon(telefoon)){
+                        if (!LegeVeld(naam) && CheckTelefoon(telefoon)){
 
                         if (!inaam.equals(dataSnapshot.child("naam").getValue().toString())) {
                             // change the value //
@@ -142,7 +142,7 @@ public class profiel extends Fragment {
                         }
 
                         // ww //
-                        if (ioldww.equals(dataSnapshot.child("wachtwoord").getValue().toString())) {
+                        if (ioldww.equals(dataSnapshot.child("wachtwoord").getValue().toString()) && !LegeVeld(newww) ) {
                             // change in auth //
                             user.updatePassword(inewww)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -195,8 +195,6 @@ public class profiel extends Fragment {
         if (text.length() != 10){
             return false;
         }
-        else{
             return true;
-        }
     }
 }

@@ -5,7 +5,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="20dp"
-    android:background="@color/fragbg"
     tools:context=".profiel">
 
   <TextView
@@ -14,16 +13,17 @@
       android:text="@string/pasaaninfo"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:textColor="@color/zwart"
-      android:textColorHint="@color/zwart" />
+      android:textColorHint="@color/wit"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="@color/wit"/>
 
   <EditText
       android:id="@+id/naam"
       android:hint="@string/naam"
       android:inputType="textPersonName"
       android:layout_marginBottom="10sp"
-      android:textColorHint="@color/zwart"
-      android:textColor="@color/zwart"
+      android:textColorHint="@color/wit"
+      android:textColor="@color/wit"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
@@ -32,8 +32,8 @@
       android:hint="@string/telefoon"
       android:inputType="number"
       android:layout_marginBottom="10dp"
-      android:textColorHint="@color/zwart"
-      android:textColor="@color/zwart"
+      android:textColorHint="@color/wit"
+      android:textColor="@color/wit"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
@@ -45,7 +45,7 @@
 
     <RadioButton
         android:id="@+id/klant"
-        android:textColor="@color/zwart"
+        android:textColor="@color/wit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/klant"
@@ -53,7 +53,7 @@
 
     <RadioButton
         android:id="@+id/mechanieker"
-        android:textColor="@color/zwart"
+        android:textColor="@color/wit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mechanieker"
@@ -68,16 +68,17 @@
       android:text="@string/pasaanww"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:textColor="@color/zwart"
-      android:textColorHint="@color/zwart" />
+      android:textColorHint="@color/wit"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="@color/wit"/>
 
   <EditText
       android:id="@+id/oldww"
       android:hint="@string/oldww"
       android:inputType="textPassword"
       android:layout_marginBottom="10sp"
-      android:textColorHint="@color/zwart"
-      android:textColor="@color/zwart"
+      android:textColorHint="@color/wit"
+      android:textColor="@color/wit"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
@@ -86,8 +87,8 @@
       android:hint="@string/newww"
       android:inputType="textPassword"
       android:layout_marginBottom="10dp"
-      android:textColorHint="@color/zwart"
-      android:textColor="@color/zwart"
+      android:textColorHint="@color/wit"
+      android:textColor="@color/wit"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
