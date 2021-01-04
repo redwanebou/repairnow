@@ -4,6 +4,7 @@
     <color name="zwart">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="backgroundknop">#3333FF</color>
+    <color name="homebg">#D3D3D3</color>
 
     <!-- nav colors !-->
     <color name="blauw">#0080FF</color>
@@ -11,5 +12,6 @@
     <color name="headnavcolor">#e68a00</color>
     <color name="fragbg">#F5F5F5</color>
     <color name="dblauw">#ff0f67b0</color>
+    <color name="paars">#800080</color>
 
 </resources>

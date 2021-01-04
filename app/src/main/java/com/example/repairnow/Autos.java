@@ -1,16 +1,29 @@
 package com.example.repairnow;
 
 public class Autos {
-    String merk,model,motor, omschrijving,brandstof;
+    String merk,model,motor, omschrijving,brandstof,naam,telefoon,adres;
 
 
-    public Autos(String merk, String model, String motor, String brandstof, String omschrijving) {
+    public Autos(String merk, String model, String motor, String brandstof, String omschrijving,String naam, String telefoon,String adres) {
         this.merk = merk;
         this.model = model;
         this.motor = motor;
         this.brandstof = brandstof;
         this.omschrijving = omschrijving;
+        this.naam = naam;
+        this.telefoon = telefoon;
+        this.adres = adres;
     }
+
+    public String getAdres(){return adres;}
+    public void setAdres(String adres){this.adres = adres;}
+
+    public String getNaam(){return naam;}
+    public void setNaam(String naam){this.naam = naam;}
+
+    public String getTelefoon(){return telefoon;}
+    public void setTelefoon(String telefoon){this.telefoon = telefoon;}
+
 
     public String getMerk() {
         return merk;

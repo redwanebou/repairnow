@@ -1,5 +1,5 @@
 package com.example.repairnow;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -7,15 +7,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,19 +22,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import android.view.View.OnTouchListener;
-
-import org.jetbrains.annotations.NotNull;
 
 
 public class HomeActivity extends AppCompatActivity {
     /* variables */
     TextView email, name;
     MenuItem probleem, probleemremove;
+    Button aanpassen;
     private FirebaseAuth mAuth;
     boolean checkpoint;
+
+
     // check login state //
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +70,12 @@ public class HomeActivity extends AppCompatActivity {
         name = (TextView) header.findViewById(R.id.gebruikersnaam);
         email = (TextView) header.findViewById(R.id.showmail);
 
-
         mAuth = FirebaseAuth.getInstance();
         String emaill = mAuth.getCurrentUser().getEmail();
 
         // set email //
         email.setText(emaill);
+
 
         // haal uit database //
         Database();
@@ -102,12 +100,15 @@ public class HomeActivity extends AppCompatActivity {
                     probleemremove.setVisible(false);
                 }
 
-                if (checkpoint){
+                if (checkpoint && keuze.equals("Klant")){
                     probleem.setVisible(false);
                     probleemremove.setVisible(true);
                 }
+                if (keuze.equals("Mechanieker")){
+                    probleem.setVisible(false);
+                    probleemremove.setVisible(false);
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }

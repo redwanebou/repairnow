@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/android_list_view_tutorial_with_example"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="7dp">
+
+        <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                   android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/merk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingRight="3dp"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/brandenmotor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:textStyle="bold"
+                    android:text="@string/brandenmotor"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/brandstof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="3dp"
+            android:paddingTop="5dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/motor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/whomadeit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingRight="3dp"
+                    android:text="@string/whomadeit"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/naam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/telefoonnummer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingRight="3dp"
+                    android:text="@string/telefoonnummer"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/telefoon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/adres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:paddingRight="3dp"
+                    android:text="@string/adres"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/adress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+                <TextView
+                    android:id="@+id/omschrijving"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+</LinearLayout>

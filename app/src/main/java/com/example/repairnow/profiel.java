@@ -173,6 +173,7 @@ public class profiel extends Fragment {
             }
         });
     }
+
     public void LinkToHome(){
         Intent i = new Intent(getActivity(),
                 HomeActivity.class);

@@ -43,6 +43,16 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/adres"
+        android:hint="@string/adres"
+        android:inputType="text"
+        android:layout_marginBottom="10sp"
+        android:textColorHint="@color/wit"
+        android:textColor="@color/wit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
         android:id="@+id/motor"
         android:hint="@string/motor"
         android:inputType="number"

@@ -31,10 +31,15 @@
     <string name="model">Model</string>
     <string name="brandstof">Brandstof</string>
     <string name="motor">Motor(cc)</string>
-    <string name="omschrijving">Omschrijving van je probleem</string>
+    <string name="omschrijving">Beschrijving van je probleem</string>
     <string name="title_activity_maps">Map</string>
     <string name="probleemremove">Probleem verwijderen</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="emtpy"> </string>
+    <string name="aanvaarden">Aanvaarden</string>
+    <string name="whomadeit">Gemaakt door:</string>
+    <string name="brandenmotor">Brandstof &amp; motorinhoud:</string>
+    <string name="telefoonnummer">Telefoonnummer:</string>
+    <string name="geaccepteerd">Geaccepteerd</string>
+    <string name="adres">Adres &amp; Postcode </string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +18,20 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class probleem extends Fragment {
 // variables //
 Spinner spin;
 ArrayAdapter<String> brandstof;
-EditText merk, model,motor,omschrijving;
+EditText merk, model,motor,omschrijving,adres;
 Button maakaan;
-String mmerk,mmodel,mmotor,oomschrijving,ttank;
+String mmerk,mmodel,mmotor,oomschrijving,ttank,address;
 String[] listbrandstof = { "Diesel", "Benzine", "Hybride", "Elektrisch", "LPG/CNG (GAS)" };
 
     // Firebase database check auth state //
@@ -60,11 +64,10 @@ String[] listbrandstof = { "Diesel", "Benzine", "Hybride", "Elektrisch", "LPG/CN
         model = view.findViewById(R.id.model);
         motor = view.findViewById(R.id.motor);
         omschrijving = view.findViewById(R.id.omschrijving);
+        adres = view.findViewById(R.id.adres);
         maakaan = view.findViewById(R.id.maakaan);
-
         CheckTheCar();
     }
-
 
 
     public void CheckTheCar(){
@@ -88,7 +91,6 @@ String[] listbrandstof = { "Diesel", "Benzine", "Hybride", "Elektrisch", "LPG/CN
                                            if (!CheckMotor(motor)) {
                                                motor.setError("Je motor uitgedrukt in cc kan niet meer dan 4 karakters hebben");
                                            }
-
                                            // check if everything is OK //
                                            if (!LegeVeld(merk) && !LegeVeld(model) && !LegeVeld(motor) && !LegeVeld(omschrijving) && CheckOmschrijving((omschrijving)) && CheckMotor(motor)) {
                                                // get the INFO //
@@ -97,18 +99,32 @@ String[] listbrandstof = { "Diesel", "Benzine", "Hybride", "Elektrisch", "LPG/CN
                                                mmotor = motor.getText().toString();
                                                ttank = spin.getSelectedItem().toString();
                                                oomschrijving = omschrijving.getText().toString();
-                                               // opslaan in db //
-                                               db = FirebaseDatabase.getInstance();
-                                              ref = db.getReference("autos");
-                                              Autos opslagruimte = new Autos(mmerk, mmodel, mmotor, ttank, oomschrijving);
-                                              ref.child(GETMYID).setValue(opslagruimte);
-                                               LinkToHome();
-                                               Toast.makeText(getContext(), "Je probleem is aangemaakt", Toast.LENGTH_SHORT).show();
+                                               address = adres.getText().toString();
+                                               GETMYID = user.getUid();
+                                               final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+
+                                               reference.child(GETMYID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                   @Override
+                                                   public void onDataChange(DataSnapshot dataSnapshot) {
+                                                      final String naamm = dataSnapshot.child("naam").getValue().toString();
+                                                      final String telefoonn = dataSnapshot.child("telefoon").getValue().toString();
+                                                       // opslaan in db //
+                                                       db = FirebaseDatabase.getInstance();
+                                                       ref = db.getReference("autos");
+                                                       Autos opslagruimte = new Autos(mmerk, mmodel, mmotor, ttank, oomschrijving,naamm,telefoonn,address);
+                                                       ref.child(GETMYID).setValue(opslagruimte);
+                                                       LinkToHome();
+                                                       Toast.makeText(getContext(), "Je probleem is aangemaakt", Toast.LENGTH_SHORT).show();
+                                                   }
+
+
+                                                   @Override
+                                                   public void onCancelled(DatabaseError databaseError) { }
+                                               });
                                            }
                        }
         });
     }
-
 
     // check op lege velden //
     boolean LegeVeld(EditText text) {
@@ -124,7 +140,7 @@ String[] listbrandstof = { "Diesel", "Benzine", "Hybride", "Elektrisch", "LPG/CN
     }
 
     boolean CheckMotor(EditText text){
-        if (text.length() < 5){
+        if (text.length() == 4){
             return true;
         }
         return false;
